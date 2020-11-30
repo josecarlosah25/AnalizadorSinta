@@ -83,12 +83,12 @@ ident {letras}({letras}|{dig}|_)*
 {cNumReal} {clase=0; 
 	tmp=(char *)malloc(strlen(yytext)*sizeof(char));
 	strcpy(tmp,yytext);
-	valor=insertarTablaLiterales(&ctesReales,tmp);
+	valor=insertarTablaLiterales(&ctesReales,tmp, 'r');
 	fprintf(archSal,"(%d,%d)\n",clase,valor);}
 {str} {clase=7; 
 	tmp=(char *)malloc(strlen(yytext)*sizeof(char));
 	strcpy(tmp,yytext);
-	valor=insertarTablaLiterales(&cadenas,tmp);
+	valor=insertarTablaLiterales(&cadenas,tmp, 's');
 	fprintf(archSal,"(%d,%d)\n",clase,valor);}
 {comment}|{omite} {}
 {cNumEnt} {clase=6; 

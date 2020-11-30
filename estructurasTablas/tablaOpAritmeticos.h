@@ -5,6 +5,7 @@
 typedef struct NodoOp{
 	int clave;
 	char caracteres[2];
+	char atomo;
 	struct NodoOp* siguiente;
 }NodoOp;
 
@@ -19,13 +20,14 @@ TablaOperadores crearTablaOperadores(){
 	return tabOperadores;
 }
 
-void insertarTablaOperadores(TablaOperadores* tabOpActual, char valor[2]){
+void insertarTablaOperadores(TablaOperadores* tabOpActual, char valor[2], char atomo){
 	NodoOp* temp = tabOpActual->head;
 	NodoOp* actual = (NodoOp *)malloc(sizeof(NodoOp));
 
 	if(temp == NULL){
 		actual->clave = 0;
 		strcpy(actual->caracteres, valor);
+		actual->atomo = atomo;
 		actual->siguiente = NULL;
 		tabOpActual->head = actual;
 	}
@@ -35,6 +37,7 @@ void insertarTablaOperadores(TablaOperadores* tabOpActual, char valor[2]){
 
 		actual->clave = temp->clave + 1;
 		strcpy(actual->caracteres, valor);
+		actual->atomo = atomo;
 		actual->siguiente = NULL;
 		temp->siguiente = actual;
 	}
@@ -56,6 +59,7 @@ void imprimirTablaOperadores(TablaOperadores tabOpActual){
 	}
 }
 
+//Falta definir cómo buscar el átomo
 char buscarTablaOperadores(TablaOperadores* tabOpActual, char operador[2]){
     NodoOp *temp = tabOpActual->head;
     while (temp != NULL) {

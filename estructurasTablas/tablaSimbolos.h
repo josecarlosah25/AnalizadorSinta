@@ -7,6 +7,7 @@ typedef struct NodoSimb{
 	int clave;
 	char* nombre;
 	int tipo;
+	char atomo;
 	struct NodoSimb* siguiente;
 }NodoSimb;
 
@@ -28,6 +29,7 @@ int insertarTablaSimbolos(TablaSimbolos* tabSimbActual, char* valor){
 	if(temp == NULL){
 		actual->clave = 0;
 		actual->nombre = valor;
+		actual->atomo = 'a';
 		actual->siguiente = NULL;
 		actual->tipo = -1;
 		tabSimbActual->head = actual;
@@ -40,6 +42,7 @@ int insertarTablaSimbolos(TablaSimbolos* tabSimbActual, char* valor){
 
 		actual->clave = temp->clave + 1;
 		actual->nombre = valor;
+		actual->atomo = 'a';
 		actual->siguiente = NULL;
 		actual->tipo = -1;
 		temp->siguiente = actual;
