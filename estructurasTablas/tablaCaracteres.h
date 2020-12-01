@@ -20,7 +20,8 @@ TablaCaracteres crearTablaCaracteres(){
 	return tabCaracteres;
 }
 
-void insertarTablaCaracteres(TablaCaracteres* tabCarActual, char valor){
+void insertarTablaCaracteres(TablaCaracteres* tabCarActual, char valor, char atomo){
+	//RECORDAR QUE EL VALOR INSERTADO TAMBIÉN ES EL ÁTOMO
 	NodoCar* temp = tabCarActual->head;
 	NodoCar* actual = (NodoCar *)malloc(sizeof(NodoCar));
 
@@ -62,6 +63,7 @@ void imprimirTablaCaracteres(TablaCaracteres tabCarActual){
 	}
 }
 
+//Falta definir cómo buscar al átomo
 int buscarTablaCaracteres(TablaCaracteres* tabCarActual, char caracter){
     NodoCar *temp = tabCarActual->head;
     while (temp != NULL) {

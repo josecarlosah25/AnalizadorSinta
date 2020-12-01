@@ -6,6 +6,7 @@ FILE *archSal;
 typedef struct NodoLit{
 	int clave;
 	char* cadena;
+	char atomo;
 	struct NodoLit* siguiente;
 }NodoLit;
 
@@ -20,13 +21,14 @@ TablaLiterales crearTablaLiterales(){
 	return tablaLit;
 }
 
-int insertarTablaLiterales(TablaLiterales* tablaLit, char* valor){
+int insertarTablaLiterales(TablaLiterales* tablaLit, char* valor, char atomo){
 	NodoLit* temp = tablaLit->head;
 	NodoLit* actual = (NodoLit *)malloc(sizeof(NodoLit));
 
 	if(temp == NULL){
 		actual->clave = 0;
 		actual->cadena = valor;
+		actual->atomo = atomo;
 		actual->siguiente = NULL;
 		tablaLit->head = actual;
 		//printf("La posicion que ocupa la cadena en la tabla es: %d\n", actual->clave);
@@ -38,6 +40,7 @@ int insertarTablaLiterales(TablaLiterales* tablaLit, char* valor){
 
 		actual->clave += temp->clave + 1;
 		actual->cadena = valor;
+		actual->atomo = atomo;
 		actual->siguiente = NULL;
 		temp->siguiente = actual;
 		//printf("La posicion que ocupa la cadena recien insertada en la tabla es: %d\n", actual->clave);
@@ -66,4 +69,3 @@ void imprimirTablaLiterales(TablaLiterales tablaLit, FILE *archSal){
 		}
 	}
 }
-
