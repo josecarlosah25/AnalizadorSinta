@@ -85,3 +85,15 @@ char buscarTablaOperadores(TablaOperadores* tabOpActual, char operador[2]){
     return 'F';
 }
 
+char devolverAtomoArit(TablaOperadores* tabOpActual, char operador[2]){
+    NodoOp *temp = tabOpActual->head;
+    while (temp != NULL) {
+
+        if (strcmp(temp->caracteres, operador) == 0)
+        	return temp->atomo;
+        else
+            temp = temp->siguiente;
+    }
+
+    return 'F';
+}

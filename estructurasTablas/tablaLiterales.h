@@ -69,3 +69,18 @@ void imprimirTablaLiterales(TablaLiterales tablaLit, FILE *archSal){
 		}
 	}
 }
+
+char devolverAtomoLit(TablaLiterales* tablaLit, int clave){
+    NodoLit *temp = tablaLit->head;
+    while (temp != NULL) {
+        if (temp->clave == clave){
+            //printf("\nSe encuentra el valor %s en el catalogo y su clave es %d \n", cadena, temp->clave);
+            return temp->atomo;
+            
+        }
+        else
+            temp = temp->siguiente;
+    }
+    
+	return 'F';
+}

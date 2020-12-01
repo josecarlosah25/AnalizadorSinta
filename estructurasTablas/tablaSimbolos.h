@@ -92,3 +92,17 @@ int buscarTablaSimbolos(TablaSimbolos* tabSimbActual, char* cadena){
     return -1;
 }
 
+char devolverAtomoSimb(TablaSimbolos* tabSimbActual, int clave){
+    NodoSimb *temp = tabSimbActual->head;
+    while (temp != NULL) {
+
+        if (temp->clave == clave){
+            //printf("\nSe encuentra la palabra %s en el Tabla de Simbolos y su clave es %d \n", cadena, temp->clave);
+            return temp->atomo;
+            //break;
+        }
+        else
+            temp = temp->siguiente;
+    }
+    return -1;
+}

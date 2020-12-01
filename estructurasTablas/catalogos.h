@@ -64,7 +64,7 @@ void imprimirCatalogo(Catalogo catActual){
 int buscarCatalogo(Catalogo* catActual, char* cadena){
     NodoCat *temp = catActual->head;
     while (temp != NULL) {
-        if (strcmp(temp->contenido,cadena)==0){
+        if (strcmp(temp->contenido,cadena) == 0){
             //printf("\nSe encuentra el valor %s en el catalogo y su clave es %d \n", cadena, temp->clave);
             return temp->clave;
             break;
@@ -77,17 +77,17 @@ int buscarCatalogo(Catalogo* catActual, char* cadena){
 }
 
 //Para devolver el átomo, será buscar en el Catálogo a partir de la clave
-int devolverAtomo(Catalogo* catActual, int clave){
+char devolverAtomoCat(Catalogo* catActual, int clave){
     NodoCat *temp = catActual->head;
     while (temp != NULL) {
-        if (strcmp(temp->contenido,cadena)==0){
+        if (temp->clave == clave){
             //printf("\nSe encuentra el valor %s en el catalogo y su clave es %d \n", cadena, temp->clave);
-            return temp->clave;
-            break;
+            return temp->atomo;
+            
         }
         else
             temp = temp->siguiente;
     }
     
-	return -1;
+	return 'F';
 }

@@ -12,9 +12,11 @@ Elaborado por :
 */
 
 FILE *archSal;
+FILE *archAtomos;
 char* tmp;
 int clase;
 int valor;
+char atomo;
 Catalogo palReserv;
 Catalogo opRel;
 TablaCaracteres simbEsp;
@@ -71,37 +73,52 @@ str \"{whatEver}*\"
 ident {letras}({letras}|{dig}|_)*
 %%
 {palRes} {clase=1; valor=buscarCatalogo(&palReserv,yytext);
-	fprintf(archSal,"(%d,%d)\n",clase,valor);}
+	atomo=devolverAtomoCat(&palReserv,valor);
+	fprintf(archSal,"(%d,%d)\n",clase,valor);
+	fprintf(archAtomos,"%c",atomo);}
 {opRel} {clase=5; valor=buscarCatalogo(&opRel,yytext);
-	fprintf(archSal,"(%d,%d)\n",clase,valor);}
+	atomo=devolverAtomoCat(&opRel,valor);
+	fprintf(archSal,"(%d,%d)\n",clase,valor);
+	fprintf(archAtomos,"%c",atomo);}
 {simbEsp} {clase=2; valor=buscarTablaCaracteres(&simbEsp,yytext[0]);
-	fprintf(archSal,"(%d,%d)\n",clase,valor);}
+	fprintf(archSal,"(%d,%d)\n",clase,valor);
+	fprintf(archAtomos,"%c",valor);}
 {asig} {clase=4; valor=buscarTablaCaracteres(&opAsig,yytext[0]);
-	fprintf(archSal,"(%d,%d)\n",clase,valor);}
-{opArit} {clase=8;
-	fprintf(archSal,"(%d,%c)\n",clase,buscarTablaOperadores(&opArit,yytext));}
+	fprintf(archSal,"(%d,%d)\n",clase,valor);
+	fprintf(archAtomos,"%c",valor);}
+{opArit} {clase=8; atomo=devolverAtomoArit(&opArit,yytext);
+	fprintf(archSal,"(%d,%c)\n",clase,buscarTablaOperadores(&opArit,yytext));
+	fprintf(archAtomos,"%c",atomo);}
 {cNumReal} {clase=0; 
 	tmp=(char *)malloc(strlen(yytext)*sizeof(char));
 	strcpy(tmp,yytext);
 	valor=insertarTablaLiterales(&ctesReales,tmp, 'r');
-	fprintf(archSal,"(%d,%d)\n",clase,valor);}
+	atomo=devolverAtomoLit(&ctesReales,valor);
+	fprintf(archSal,"(%d,%d)\n",clase,valor);
+	fprintf(archAtomos,"%c",atomo);}
 {str} {clase=7; 
 	tmp=(char *)malloc(strlen(yytext)*sizeof(char));
 	strcpy(tmp,yytext);
 	valor=insertarTablaLiterales(&cadenas,tmp, 's');
-	fprintf(archSal,"(%d,%d)\n",clase,valor);}
+	atomo=devolverAtomoLit(&cadenas,valor);
+	fprintf(archSal,"(%d,%d)\n",clase,valor);
+	fprintf(archAtomos,"%c",atomo);}
 {comment}|{omite} {}
-{cNumEnt} {clase=6; 
-	fprintf(archSal,"(%d,%s)\n",clase,yytext);}
+{cNumEnt} {clase=6; atomo='e';
+	fprintf(archSal,"(%d,%s)\n",clase,yytext);
+	fprintf(archAtomos,"%c",atomo);}
 {ident} {clase=3; 
 	tmp=(char *)malloc(strlen(yytext)*sizeof(char));
 	strcpy(tmp,yytext);
 	if(buscarTablaSimbolos(&tabSimb,tmp)!=-1){
 		valor=buscarTablaSimbolos(&tabSimb,tmp);
+		atomo=devolverAtomoSimb(&tabSimb,valor);
 	}else{
 		valor=insertarTablaSimbolos(&tabSimb,tmp);
+		atomo=devolverAtomoSimb(&tabSimb,valor);
 	}
-	fprintf(archSal,"(%d,%d)\n",clase,valor);}
+	fprintf(archSal,"(%d,%d)\n",clase,valor);
+	fprintf(archAtomos,"%c",atomo);}
 . {printf("======>ERROR: No se reconoció: %s Sigue el analisis\n",yytext);}
 %%
 int main(int argc,char *argv[])
@@ -124,12 +141,13 @@ int main(int argc,char *argv[])
 
 	yyin=fopen(argv[1],"r");
 	archSal=fopen("salida.txt","w");
+	archAtomos=fopen("atomos.txt","w");
 	fprintf(archSal, "-----TOKENS GENERADOS----\n");
 	yylex();
 	imprimirTablaLiterales(cadenas, archSal);
 	imprimirTablaLiterales(ctesReales, archSal);
 	imprimirTablaSimbolos(tabSimb, archSal);
 
-
 	close(archSal);
+	close(archAtomos);
 }
