@@ -147,6 +147,7 @@ int main(int argc,char *argv[])
 	imprimirTablaLiterales(cadenas, archSal);
 	imprimirTablaLiterales(ctesReales, archSal);
 	imprimirTablaSimbolos(tabSimb, archSal);
+	fprintf(archAtomos,"%c", 126);
 
 	close(archSal);
 	close(archAtomos);
