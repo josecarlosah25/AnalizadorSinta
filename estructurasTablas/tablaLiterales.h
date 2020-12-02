@@ -59,7 +59,7 @@ void imprimirTablaLiterales(TablaLiterales tablaLit, FILE *archSal){
 		NodoLit* actual = tablaLit.head;
 		printf("\n-----TABLA DE LITERALES-----");
 		printf("\nPosicion \t_ \tCadena\n");
-		fprintf(archSal, "\n------TABLA DE LITERALES-----");
+		//fprintf(archSal, "\n------TABLA DE LITERALES-----");
 		fprintf(archSal, "\nPosicion \t_ \tCadena\n");
 		while(actual!= NULL){
 			

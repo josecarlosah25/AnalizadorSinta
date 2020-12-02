@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "estructurasTablas/generadorTablas.c"
+#include "anSintacRecursivo.h"
 
 /*Programa que lee un programa y hace el reconocimiento del lenguaje
 	definido por la clase
@@ -13,6 +14,7 @@ Elaborado por :
 
 FILE *archSal;
 FILE *archAtomos;
+FILE *openPrueba;
 char* tmp;
 int clase;
 int valor;
@@ -94,6 +96,7 @@ ident {letras}({letras}|{dig}|_)*
 	strcpy(tmp,yytext);
 	valor=insertarTablaLiterales(&ctesReales,tmp, 'r');
 	atomo=devolverAtomoLit(&ctesReales,valor);
+	fprintf(archSal, "\n------TABLA DE CONSTANTES REALES-----");
 	fprintf(archSal,"(%d,%d)\n",clase,valor);
 	fprintf(archAtomos,"%c",atomo);}
 {str} {clase=7; 
@@ -101,6 +104,7 @@ ident {letras}({letras}|{dig}|_)*
 	strcpy(tmp,yytext);
 	valor=insertarTablaLiterales(&cadenas,tmp, 's');
 	atomo=devolverAtomoLit(&cadenas,valor);
+	fprintf(archSal, "\n------TABLA DE CADENAS-----");
 	fprintf(archSal,"(%d,%d)\n",clase,valor);
 	fprintf(archAtomos,"%c",atomo);}
 {comment}|{omite} {}
@@ -151,4 +155,9 @@ int main(int argc,char *argv[])
 
 	close(archSal);
 	close(archAtomos);
+
+	openPrueba=fopen("atomos.txt", "r");
+	asignaArchivoAtomos(openPrueba);
+	P();
+
 }
