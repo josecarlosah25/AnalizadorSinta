@@ -4,7 +4,7 @@
 
 typedef struct NodoOp{
 	int clave;
-	char caracteres[2];
+	char* caracteres;
 	char atomo;
 	struct NodoOp* siguiente;
 }NodoOp;
@@ -20,9 +20,10 @@ TablaOperadores crearTablaOperadores(){
 	return tabOperadores;
 }
 
-void insertarTablaOperadores(TablaOperadores* tabOpActual, char valor[2], char atomo){
+void insertarTablaOperadores(TablaOperadores* tabOpActual, char* valor, char atomo){
 	NodoOp* temp = tabOpActual->head;
 	NodoOp* actual = (NodoOp *)malloc(sizeof(NodoOp));
+	actual->caracteres=(char *)malloc(strlen(valor)*sizeof(char));
 
 	if(temp == NULL){
 		actual->clave = 0;
@@ -36,13 +37,14 @@ void insertarTablaOperadores(TablaOperadores* tabOpActual, char valor[2], char a
 			temp = temp->siguiente;
 
 		actual->clave = temp->clave + 1;
-		actual->atomo = atomo;
+
 		strcpy(actual->caracteres, valor);
+		actual->atomo = atomo;
 		actual->siguiente = NULL;
 		temp->siguiente = actual;
 	}
 	
-
+	printf("\n %s \n",actual->caracteres);
 }
 
 void imprimirTablaOperadores(TablaOperadores tabOpActual){
@@ -60,7 +62,7 @@ void imprimirTablaOperadores(TablaOperadores tabOpActual){
 }
 
 //Falta definir cómo buscar el átomo
-char buscarTablaOperadores(TablaOperadores* tabOpActual, char operador[2]){
+char buscarTablaOperadores(TablaOperadores* tabOpActual, char* operador){
     NodoOp *temp = tabOpActual->head;
     while (temp != NULL) {
 
@@ -85,7 +87,7 @@ char buscarTablaOperadores(TablaOperadores* tabOpActual, char operador[2]){
     return 'F';
 }
 
-char devolverAtomoArit(TablaOperadores* tabOpActual, char operador[2]){
+char devolverAtomoArit(TablaOperadores* tabOpActual, char* operador){
     NodoOp *temp = tabOpActual->head;
     while (temp != NULL) {
 
