@@ -146,6 +146,7 @@ int main(int argc,char *argv[])
 	yyin=fopen(argv[1],"r");
 	archSal=fopen("salida.txt","w");
 	archAtomos=fopen("atomos.txt","w");
+	/*fprintf(archAtomos, "\n");*/
 	fprintf(archSal, "-----TOKENS GENERADOS----\n");
 	yylex();
 	imprimirTablaLiterales(cadenas, archSal);
