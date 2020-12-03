@@ -1,3 +1,4 @@
 *.out
 lex.yy.c
 salida.txt
+atomos.txt
