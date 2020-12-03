@@ -1,3 +1,4 @@
 *.out
-salida.txt
+tokens.txt
 atomos.txt
+lex.yy.c
