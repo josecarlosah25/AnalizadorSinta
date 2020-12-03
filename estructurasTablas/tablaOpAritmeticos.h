@@ -27,8 +27,11 @@ void insertarTablaOperadores(TablaOperadores* tabOpActual, char* valor, char ato
 
 	if(temp == NULL){
 		actual->clave = 0;
-		actual->atomo = atomo;
+		/*actual->caracteres[0] = valor[0];
+		actual->caracteres[1] = valor[1];
+		actual->caracteres[2] = valor[2];*/
 		strcpy(actual->caracteres, valor);
+		actual->atomo = atomo;
 		actual->siguiente = NULL;
 		tabOpActual->head = actual;
 	}
@@ -37,7 +40,6 @@ void insertarTablaOperadores(TablaOperadores* tabOpActual, char* valor, char ato
 			temp = temp->siguiente;
 
 		actual->clave = temp->clave + 1;
-
 		strcpy(actual->caracteres, valor);
 		actual->atomo = atomo;
 		actual->siguiente = NULL;
