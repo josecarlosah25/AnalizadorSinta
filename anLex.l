@@ -5,11 +5,13 @@
 #include "anSintacRecursivo.h"
 
 /*Programa que lee un programa y hace el reconocimiento del lenguaje
-	definido por la clase
+	definido por la clase, realiza analisis lexico y sintactico
 
 Elaborado por : 
 	-Alcántara Hoyos José Carlos
 	-Vargas Guerrero Armando
+
+Fecha de entrega : 3 de Diciembre de 2020
 */
 
 FILE *archSal;
@@ -133,18 +135,18 @@ int main(int argc,char *argv[])
 	opAsig = generarTabOpAsignacion();
 	opArit = generarTabOpAritmeticos();
 
-	imprimirCatalogo(palReserv);
+	/*imprimirCatalogo(palReserv);
 	imprimirCatalogo(opRel);
 	imprimirTablaCaracteres(simbEsp);
 	imprimirTablaCaracteres(opAsig);
-	imprimirTablaOperadores(opArit);
+	imprimirTablaOperadores(opArit);*/
 
 	ctesReales = crearTablaLiterales();
 	cadenas = crearTablaLiterales();
 	tabSimb = crearTablaSimbolos();
 
 	yyin=fopen(argv[1],"r");
-	archSal=fopen("salida.txt","w");
+	archSal=fopen("tokens.txt","w");
 	archAtomos=fopen("atomos.txt","w");
 	fprintf(archSal, "-----TOKENS GENERADOS----\n");
 	yylex();
@@ -160,6 +162,6 @@ int main(int argc,char *argv[])
 	openPrueba=fopen("atomos.txt", "r");
 	asignaArchivoAtomos(openPrueba);
 	P();
-
+	printf("\n---------Analisis sintactico terminado---------\n");
 
 }

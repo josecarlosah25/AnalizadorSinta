@@ -41,17 +41,17 @@ void SP();
 char getC(){
 	char car=fgetc(origen);
 	posicion += 1;
-	printf("\n lei: %c \t posicion: %d\n",car, posicion);
+	printf("%c",car);
 	return car;
 }
 
 void asignaArchivoAtomos(FILE *dir){
 	origen=dir;
+	printf("\nCadena de atomos leida:\n");
 	c=getC();
 }
 
 void P(){
-	printf("\nentre a P\n");
 	if(c=='b' || c=='c' || c=='f' || c=='n' ||
 		c=='g' || c=='['){
 
@@ -71,7 +71,6 @@ void YP(){
 		return;
 
 	}else if(c==126){
-		printf("\nSi llegue a fin de cadena?\n");
 		return;
 	}else{
 		error(" [ (fin de cadena)");
@@ -809,6 +808,6 @@ void SP(){
 }
 
 void error(char *charEsperado){
-	printf("Error se esperaba: || %s || y se leyó || %c || en la posicion %d\n",charEsperado,c, posicion);
+	printf("\n--Error sintactico: Se esperaba ->|| %s ||<-\tY se leyó ->|| %c ||<-\n----------Seguimos leyendo cadena de atomos --------\n",charEsperado,c);
 }
 

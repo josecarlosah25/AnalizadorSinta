@@ -43,8 +43,7 @@ void insertarTablaOperadores(TablaOperadores* tabOpActual, char* valor, char ato
 		actual->siguiente = NULL;
 		temp->siguiente = actual;
 	}
-	
-	printf("\n %s \n",actual->caracteres);
+
 }
 
 void imprimirTablaOperadores(TablaOperadores tabOpActual){

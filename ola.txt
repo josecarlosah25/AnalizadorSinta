@@ -1,0 +1,104 @@
+bool q:
+int a:
+char c,b:
+
+[ void main()
+ {
+	int a,b:
+	bool x,y:
+	float efe:
+	efe=234.12:
+	a=12+(1*6):
+	x=1/5:
+	a=[funcionIf()]:
+ }
+ ]
+
+ [ void funcionIf()
+ {
+	if (a==(x+5))
+	{
+		a=8*9:
+	}
+	else
+	{
+		a=y%2:
+		b=4*(12/4**1):
+	}:
+ }
+ ]
+
+ [ void funcionWhile()
+ {
+	while (a==0)
+	{
+		x=x+6:
+	}
+}
+
+]
+
+ [ void funcionDoWhile()
+ {
+	do {
+		a=b+i:
+		i=i+5:
+		if(a==0){
+			a=b:
+		}:
+	} while (a>x):
+}
+]
+
+
+[ void funcionFor()
+ {
+	for [5]
+	{
+		x=(b+1)/(5*a):
+	}
+}
+]
+
+[ void funcionFor()
+ {
+	for [5]
+	{
+		x=a*(r+a)**e:
+	}
+}
+]
+[ int funcionSwitch()
+ {
+	switch (menu)
+	{
+		case 1 [ 
+				cad = "Se eligio opcion 1":
+				while (a==0)
+				{
+					b=6:
+				}				
+				]
+
+		break:
+		case 2 [ cad = "Se eligio opcion 2":]
+		break:
+		default [ 
+				 cad = "Elige una opcion":
+				 for [5]
+				 {
+					x=a*(r+a)**f:
+
+					if (a==(x/5))
+					{
+						a=8*b:
+					}
+					else
+					{
+						a=y**2:
+					}:
+				 }
+				]
+	}
+}
+]
