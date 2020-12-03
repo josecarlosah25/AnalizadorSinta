@@ -749,7 +749,7 @@ void A(){
 
 void CP(){
 	if (c == '+'){
-		c == getC();
+		c = getC();
 		ZP();
 		if (c == ',')
 			c = getC();
