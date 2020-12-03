@@ -40,7 +40,7 @@ void SP();
 
 char getC(){
 	char car=fgetc(origen);
-	printf("\n lei: %d\n",car);
+	printf("\n lei: %c\n",car);
 	return car;
 }
 
@@ -50,7 +50,7 @@ void asignaArchivoAtomos(FILE *dir){
 }
 
 void P(){
-	printf("entre a P");
+	printf("\nentre a P\n");
 	if(c=='b' || c=='c' || c=='f' || c=='n' ||
 		c=='g' || c=='['){
 
@@ -68,7 +68,9 @@ void YP(){
 		Y();
 		YP();
 		return;
-	}else if(c=='~'){
+
+	}else if(c==126){
+		printf("\nSi llegue a fin de cadena?\n");
 		return;
 	}else{
 		error(" [ (fin de cadena)");
@@ -119,11 +121,12 @@ void Y(){
 }
 
 void VP(){
-	if(c=='b' || c=='c' || c=='f' || c=='n' ||
-		c=='g'){
+	if(c=='b' || c=='c' || c=='f' || c=='n' || c=='g'){
 		V();
+		return;
 	}else if(c=='o'){
 		c=getC();
+		return;
 	}else{
 		error("b c f n g o ");
 	}
@@ -134,6 +137,7 @@ void DP(){
 		c=='g'){
 		D();
 		DP();
+		return;
 	}else if(c=='a' || c=='x' || c=='i' || c=='w' ||
 		c=='h'|| c=='p' || c=='u' || c=='t' || c=='[' ||
 		c=='}'){
@@ -153,6 +157,7 @@ void D(){
 		}else{
 			error(":");
 		}
+		return;
 	}else{
 		error("b c f n g");
 	}
@@ -163,6 +168,7 @@ void L(){
 		c=getC();
 		G();
 		C();
+		return;
 	}else{
 		error("a");
 	}
@@ -172,8 +178,10 @@ void C(){
 	if(c==','){
 		c=getC();
 		L();
+		return;
 	}else if(c==':'){
 		c=getC();
+		return;
 	}else{
 		error(", :");
 	}
@@ -182,14 +190,19 @@ void C(){
 void V(){
 	if(c=='b'){
 		c=getC();
+		return;
 	}else if(c=='c'){
 		c=getC();
+		return;
 	}else if(c=='f'){
 		c=getC();
+		return;
 	}else if(c=='n'){
 		c=getC();
+		return;
 	}else if(c=='g'){
 		c=getC();
+		return;
 	}else{
 		error("b c f n g");
 	}	
@@ -208,33 +221,42 @@ void G(){
 		}else{
 			error("]");
 		}
+		return;
 	}else if(c==',' || c=='='|| c==':'|| c=='*'|| c=='/'
 		|| c=='%'|| c=='#'|| c=='+'|| c=='-'|| c=='!'
-		|| c=='?'|| c=='>'|| c=='<'|| c=='y'|| c=='m'){
+		|| c=='?'|| c=='>'|| c=='<'|| c=='y'|| c=='m' || c==')'){
 		return;
 	}else{
-		error("[ , = : * / % # + - ! ? > < y m");
+		error("[ , = : * / % # + - ! ? > < y m )");
 	}
 }
 
 void S(){
 	if(c=='a'){
 		A();
+		return;
 	}else if(c=='x'){
 		X();
+		return;
 	}else if(c=='i'){
 		I();
+		return;
 	}else if(c=='w'){
 		W();
+		return;
 	}else if(c=='h'){
 		H();
+		return;
 	}else if(c=='p'){
 		N();
+		return;
 	}else if(c=='u'){
 		c=getC();
 		U();
+		return;
 	}else if(c=='t'){
 		c=getC();
+		return;
 	}else if(c=='['){
 		c=getC();
 		if(c=='a'){
@@ -257,6 +279,7 @@ void S(){
 		}else{
 			error(":");
 		}
+		return;
 	}else{
 		error("a x i w h p u t [");
 	}
@@ -271,6 +294,7 @@ void U(){
 		}else{
 			error(")");
 		}
+		return;
 	}else if(c==':'){
 		return;
 	}else{
@@ -306,6 +330,7 @@ void W(){
 		}else{
 			error("}");
 		}
+		return;
 
 	}else{
 		error("w");
@@ -347,6 +372,7 @@ void H(){
 		}else{
 			error(":");
 		}
+		return;
 	}else{
 		error("h");
 	}
@@ -406,6 +432,7 @@ void X(){
 		}else{
 			error("}");
 		}
+		return;
 
 	}else{
 		error("x");
@@ -447,11 +474,8 @@ void O(){
 			error(":");
 		}
 
-		if(c=='o'){
-			c=getC();
-		}else{
-			error("o");
-		}
+		O();
+		return;
 
 	}else if(c=='d'){
 		return;
@@ -465,6 +489,7 @@ void B(){
 		c=='p'|| c=='u' || c=='t' ||c=='['){
 		S();
 		B();
+		return;
 	}else if(c==']' || c=='}'){
 		return;
 	}else{
@@ -498,6 +523,7 @@ void I(){
 			error("}");
 		}
 		J();
+		return;
 	}else{
 		error("i");
 	}
@@ -517,6 +543,8 @@ void J(){
 		}else{
 			error("}");
 		}
+
+		return;
 	}else if(c==':'){
 		return;
 	}else{
@@ -553,6 +581,7 @@ void N(){
 		}else{
 			error("}");
 		}
+		return;
 	}else{
 		error("p");
 	}
@@ -563,26 +592,28 @@ void R(){
 		E();
 		K();
 		E();
+		return;
 	}else{
 		error("( a e r [");
 	}
 }
 
 void K(){
-	if(c=='!' || c=='?' || c=='>' || c=='<' || c=='y'||
-		c=='m'){
+	if(c=='!' || c=='?' || c=='>' || c=='<' || c=='y'|| c=='m'){
 		c=getC();
+		return;
 	}else{
 		error("! ? > < y m");
 	}
 }
 
 void E(){
-	if(c=='(' || c=='a' || c=='e' || c=='r' || c=='['){
+	if(c=='(' || c=='a' || c=='e' || c=='r' || c=='[' ){
 		T();
 		EP();
+		return;
 	}else{
-		error("! ? > < y m");
+		error("( a e r [");
 	}
 }
 
@@ -597,10 +628,11 @@ void EP(){
 		T();
 		EP();
 		return;
-	} else if (c == '!' || c == '?' || c == '>' || c == '<' || c == 'y' || c == 'm' || c == ')'){
+	} else if (c == ')' || c == '}' || c == '!' || c == '?' || c == '>' || 
+				c == '<' || c == 'y' || c == 'm' || c == ':'){
 		return;
 	} else {
-		error("+ - ! ? > < y m )");
+		error(") } ! ? > < y m :");
 	}
 }
 
@@ -637,10 +669,10 @@ void TP(){
 		TP();
 		return;
 	} else if (c == '+' || c == '-' || c == '!' || c == '?' || c == '>' 
-				|| c == '<' || c == 'y' || c == 'm' || c == ')' ){
+				|| c == '<' || c == 'y' || c == 'm' || c == ')' || c == ':'){
 		return;
 	} else {
-		error("* / % # + - ! ? > < y m )");
+		error("* / % # + - ! ? > < y m ) :");
 	}
 } 
 
@@ -771,6 +803,6 @@ void SP(){
 }
 
 void error(char *charEsperado){
-	printf("Error se esperaba: || %s || y se leyó ||%c|| \n",charEsperado,c);
+	printf("Error se esperaba: || %s || y se leyó || %c || \n",charEsperado,c);
 }
 

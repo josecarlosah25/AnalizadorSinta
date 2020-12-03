@@ -96,7 +96,7 @@ ident {letras}({letras}|{dig}|_)*
 	strcpy(tmp,yytext);
 	valor=insertarTablaLiterales(&ctesReales,tmp, 'r');
 	atomo=devolverAtomoLit(&ctesReales,valor);
-	fprintf(archSal, "\n------TABLA DE CONSTANTES REALES-----");
+	/*fprintf(archSal, "\n------TABLA DE CONSTANTES REALES-----\n");*/
 	fprintf(archSal,"(%d,%d)\n",clase,valor);
 	fprintf(archAtomos,"%c",atomo);}
 {str} {clase=7; 
@@ -104,7 +104,7 @@ ident {letras}({letras}|{dig}|_)*
 	strcpy(tmp,yytext);
 	valor=insertarTablaLiterales(&cadenas,tmp, 's');
 	atomo=devolverAtomoLit(&cadenas,valor);
-	fprintf(archSal, "\n------TABLA DE CADENAS-----");
+	/*fprintf(archSal, "\n------TABLA DE CADENAS------\n");*/
 	fprintf(archSal,"(%d,%d)\n",clase,valor);
 	fprintf(archAtomos,"%c",atomo);}
 {comment}|{omite} {}
@@ -151,13 +151,15 @@ int main(int argc,char *argv[])
 	imprimirTablaLiterales(cadenas, archSal);
 	imprimirTablaLiterales(ctesReales, archSal);
 	imprimirTablaSimbolos(tabSimb, archSal);
+
 	fprintf(archAtomos,"%c", 126);
 
-	close(archSal);
-	close(archAtomos);
+	fclose(archSal);
+	fclose(archAtomos);
 
 	openPrueba=fopen("atomos.txt", "r");
 	asignaArchivoAtomos(openPrueba);
 	P();
+
 
 }
