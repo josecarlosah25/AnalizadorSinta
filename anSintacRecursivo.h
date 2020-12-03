@@ -97,6 +97,11 @@ void Y(){
 		}else{
 			error("(");
 		}
+		if(c==')'){
+			c=getC();
+		}else{
+			error(")");
+		}
 
 		if(c==')'){
 			c=getC();
@@ -162,11 +167,6 @@ void D(){
 		c=='g'){
 		V();
 		L();
-		/*if(c==':'){
-			c=getC();
-		}else{
-			error(":");
-		}*/
 		return;
 	}else{
 		error("b c f n g");
