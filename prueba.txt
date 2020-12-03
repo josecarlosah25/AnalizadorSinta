@@ -1,0 +1,52 @@
+int z, t[2],ka[7]:
+bool bandera:
+string cadena,x:
+char za, xa, ya:
+float var1:
+
+[void main()
+	{
+		int d, f:
+		z = 2:
+		d = 0:
+		var1=129.34E-21
+		t[1] = c:
+		x = "azul":
+		ka[4]= z*t[1]**z/t[0]:
+		for[56]
+		{
+			z = z+1:
+		}
+		if(z>=23)
+		{
+			switch(f)
+			{
+				case 1 [cadena = "rojo":]
+				break:
+				default [cadena =+"verde y ",x:]
+			}
+			var1 = 133.21:
+		}
+		else if(z=13)
+		{
+			while(c < 9)
+			{
+				ka[10] = ka[10]+2:
+			}
+		}else{
+			do {
+				x = "verde":
+			} while (perro == 1):
+			f=[golaMundo()]:
+		}
+	}
+]
+
+[int golaMundo()
+	{
+		int hola:
+		string mundo:
+		hola = 69:
+		cadena = "4:20":
+	}
+]
