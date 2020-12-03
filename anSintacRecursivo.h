@@ -2,7 +2,7 @@
 
 FILE *origen;
 char c;
-
+int posicion=0;
 
 char getC();
 void error();
@@ -40,7 +40,8 @@ void SP();
 
 char getC(){
 	char car=fgetc(origen);
-	printf("\n lei: %c\n",car);
+	posicion += 1;
+	printf("\n lei: %c \t posicion: %d\n",car, posicion);
 	return car;
 }
 
@@ -523,6 +524,11 @@ void I(){
 			error("}");
 		}
 		J();
+		if(c==':'){
+			c=getC();
+		}else{
+			error(":");
+		}
 		return;
 	}else{
 		error("i");
@@ -803,6 +809,6 @@ void SP(){
 }
 
 void error(char *charEsperado){
-	printf("Error se esperaba: || %s || y se leyó || %c || \n",charEsperado,c);
+	printf("Error se esperaba: || %s || y se leyó || %c || en la posicion %d\n",charEsperado,c, posicion);
 }
 
