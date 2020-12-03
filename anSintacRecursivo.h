@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 FILE *origen;
+int posicion = 0;
 char c;
 
 
@@ -40,8 +41,11 @@ void SP();
 
 char getC(){
 	char car=fgetc(origen);
-	printf("\n lei: %c\n",car);
-	return car;
+	if (car != '\n'){
+		posicion += 1;
+		printf("\n lei: %c \t posicion: %d \n", car, posicion);
+		return car;
+	}
 }
 
 void asignaArchivoAtomos(FILE *dir){
@@ -92,6 +96,12 @@ void Y(){
 			c=getC();
 		}else{
 			error("(");
+		}
+
+		if(c==')'){
+			c=getC();
+		}else{
+			error(")");
 		}
 
 		if(c=='{'){
@@ -152,11 +162,11 @@ void D(){
 		c=='g'){
 		V();
 		L();
-		if(c==':'){
+		/*if(c==':'){
 			c=getC();
 		}else{
 			error(":");
-		}
+		}*/
 		return;
 	}else{
 		error("b c f n g");
@@ -803,6 +813,7 @@ void SP(){
 }
 
 void error(char *charEsperado){
-	printf("Error se esperaba: || %s || y se leyó || %c || \n",charEsperado,c);
+	printf("Error se esperaba: || %s || y se leyó || %c || en la posicion: %d \n", charEsperado, c, posicion);
+	return;
 }
 
