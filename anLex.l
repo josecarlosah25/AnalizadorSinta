@@ -153,8 +153,8 @@ int main(int argc,char *argv[])
 	imprimirTablaSimbolos(tabSimb, archSal);
 	fprintf(archAtomos,"%c", 126);
 
-	close(archSal);
-	close(archAtomos);
+	fclose(archSal);
+	fclose(archAtomos);
 
 	openPrueba=fopen("atomos.txt", "r");
 	asignaArchivoAtomos(openPrueba);

@@ -40,7 +40,7 @@ void SP();
 
 char getC(){
 	char car=fgetc(origen);
-	printf("\n lei: %d\n",car);
+	printf("\n lei: %c\n",car);
 	return car;
 }
 
