@@ -2,7 +2,7 @@
 
 FILE *origen;
 char c;
-int posicion=0;
+int nError=0;
 
 char getC();
 void error();
@@ -40,14 +40,13 @@ void SP();
 
 char getC(){
 	char car=fgetc(origen);
-	posicion += 1;
 	printf("%c",car);
 	return car;
 }
 
 void asignaArchivoAtomos(FILE *dir){
 	origen=dir;
-	printf("\nCadena de atomos leida:\n");
+	printf("\n--Cadena de atomos leida:\n");
 	c=getC();
 }
 
@@ -808,6 +807,11 @@ void SP(){
 }
 
 void error(char *charEsperado){
-	printf("\n--Error sintactico: Se esperaba ->|| %s ||<-\tY se leyó ->|| %c ||<-\n----------Seguimos leyendo cadena de atomos --------\n",charEsperado,c);
+	nError++;
+	printf("\n---Error sintactico: Se esperaba ->|| %s ||<-\tY se leyó ->|| %c ||<-\n\n----------Seguimos leyendo cadena de atomos --------\n",charEsperado,c);
+}
+
+void showNumErrores(){
+	printf("Errores sintacticos: %d\n",nError);
 }
 

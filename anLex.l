@@ -162,6 +162,6 @@ int main(int argc,char *argv[])
 	openPrueba=fopen("atomos.txt", "r");
 	asignaArchivoAtomos(openPrueba);
 	P();
-	printf("\n---------Analisis sintactico terminado---------\n");
-
+	printf("\n\n---------Analisis sintactico terminado---------\n");
+	showNumErrores();
 }
