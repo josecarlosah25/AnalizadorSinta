@@ -1,3 +1,4 @@
+
 int z, t[2], ka[7]:
 bool bandera:
 string cadena,x:
@@ -40,5 +41,3 @@ float var,v2:
 	hola=69:
 	mundo= "4.20":
 }]
-
-
